@@ -1,5 +1,4 @@
 import random
-
 import numpy as np
 
 
@@ -14,15 +13,13 @@ def generate_matrix(rows=19, cols=16, letters=["R", "B", "G"]):
             first_letter = last_first_letter
         matrix[0, i_col] = first_letter
         last_first_letter = first_letter
+        previous_rows_letter = first_letter
 
         for i_row in range(1, rows):
             # Pick a random letter different from the one above
-            options = list(set(letters).difference(set(first_letter)))
-            matrix[i_row, i_col] = random.choice(options)
+            options = list(set(letters).difference(set(previous_rows_letter)))
+            current_letter = random.choice(options)
+            matrix[i_row, i_col] = current_letter
+            previous_rows_letter = current_letter
 
     return matrix
-
-
-# Example usage:
-mat = generate_matrix()
-print(mat)
